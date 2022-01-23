@@ -129,15 +129,16 @@ class RegisterView extends GetView<AuthController> {
                         hintText: "011 000 000 00".tr,
                         initialValue: controller.currentUser?.value?.phoneNumber,
                         onSaved: (input) {
-                          if (input.startsWith("00")) {
-                            input = "+" + input.substring(2);
-                          }
                           return controller.currentUser.value.phoneNumber = input;
                         },
                         validator: (input) {
-                          return !input.startsWith('\+') && !input.startsWith('00')
-                              ? "Should be valid mobile number with country code"
-                              : null;
+                          return (input.startsWith('015') ||
+                                      input.startsWith('011') ||
+                                      input.startsWith('012') ||
+                                      input.startsWith('010')) &&
+                                  (input.length == 11)
+                              ? null
+                              : "Should be valid mobile number";
                         },
                         iconData: Icons.phone_android_outlined,
                         isLast: false,
@@ -156,6 +157,7 @@ class RegisterView extends GetView<AuthController> {
                           keyboardType: TextInputType.visiblePassword,
                           isLast: true,
                           isFirst: false,
+                          onEditingComplete: () => controller.register(),
                           suffixIcon: IconButton(
                             onPressed: () {
                               controller.hidePassword.value = !controller.hidePassword.value;

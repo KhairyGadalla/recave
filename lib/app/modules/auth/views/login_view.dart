@@ -50,7 +50,10 @@ class LoginView extends GetView<AuthController> {
                       color: Get.theme.colorScheme.secondary,
                       borderRadius: BorderRadius.vertical(bottom: Radius.circular(10)),
                       boxShadow: [
-                        BoxShadow(color: Get.theme.focusColor.withOpacity(0.2), blurRadius: 10, offset: Offset(0, 5)),
+                        BoxShadow(
+                            color: Get.theme.focusColor.withOpacity(0.2),
+                            blurRadius: 10,
+                            offset: Offset(0, 5)),
                       ],
                     ),
                     margin: EdgeInsets.only(bottom: 50),
@@ -60,12 +63,14 @@ class LoginView extends GetView<AuthController> {
                         children: [
                           Text(
                             _settings.appName,
-                            style: Get.textTheme.headline6.merge(TextStyle(color: Get.theme.primaryColor, fontSize: 24)),
+                            style: Get.textTheme.headline6
+                                .merge(TextStyle(color: Get.theme.primaryColor, fontSize: 24)),
                           ),
                           SizedBox(height: 5),
                           Text(
                             "Welcome to the best service provider system!".tr,
-                            style: Get.textTheme.caption.merge(TextStyle(color: Get.theme.primaryColor)),
+                            style: Get.textTheme.caption
+                                .merge(TextStyle(color: Get.theme.primaryColor)),
                             textAlign: TextAlign.center,
                           ),
                           // Text("Fill the following credentials to login your account", style: Get.textTheme.caption.merge(TextStyle(color: Get.theme.primaryColor))),
@@ -102,7 +107,8 @@ class LoginView extends GetView<AuthController> {
                         hintText: "johndoe@gmail.com".tr,
                         initialValue: controller.currentUser?.value?.email,
                         onSaved: (input) => controller.currentUser.value.email = input,
-                        validator: (input) => !input.contains('@') ? "Should be a valid email".tr : null,
+                        validator: (input) =>
+                            !input.contains('@') ? "Should be a valid email".tr : null,
                         iconData: Icons.alternate_email,
                       ),
                       Obx(() {
@@ -111,16 +117,20 @@ class LoginView extends GetView<AuthController> {
                           hintText: "••••••••••••".tr,
                           initialValue: controller.currentUser?.value?.password,
                           onSaved: (input) => controller.currentUser.value.password = input,
-                          validator: (input) => input.length < 3 ? "Should be more than 3 characters".tr : null,
+                          validator: (input) =>
+                              input.length < 3 ? "Should be more than 3 characters".tr : null,
                           obscureText: controller.hidePassword.value,
                           iconData: Icons.lock_outline,
                           keyboardType: TextInputType.visiblePassword,
+                          onEditingComplete: () => controller.login(),
                           suffixIcon: IconButton(
                             onPressed: () {
                               controller.hidePassword.value = !controller.hidePassword.value;
                             },
                             color: Theme.of(context).focusColor,
-                            icon: Icon(controller.hidePassword.value ? Icons.visibility_outlined : Icons.visibility_off_outlined),
+                            icon: Icon(controller.hidePassword.value
+                                ? Icons.visibility_outlined
+                                : Icons.visibility_off_outlined),
                           ),
                         );
                       }),
@@ -142,7 +152,8 @@ class LoginView extends GetView<AuthController> {
                         color: Get.theme.colorScheme.secondary,
                         text: Text(
                           "Login".tr,
-                          style: Get.textTheme.headline6.merge(TextStyle(color: Get.theme.primaryColor)),
+                          style: Get.textTheme.headline6
+                              .merge(TextStyle(color: Get.theme.primaryColor)),
                         ),
                       ).paddingSymmetric(vertical: 10, horizontal: 20),
                       Row(

@@ -2,7 +2,6 @@
  * Copyright (c) 2020 .
  */
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -27,6 +26,7 @@ class TextFieldWidget extends StatelessWidget {
     this.style,
     this.textAlign,
     this.suffix,
+    this.onEditingComplete,
   }) : super(key: key);
 
   final FormFieldSetter<String> onSaved;
@@ -45,6 +45,7 @@ class TextFieldWidget extends StatelessWidget {
   final bool isLast;
   final Widget suffixIcon;
   final Widget suffix;
+  final VoidCallback onEditingComplete;
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +56,8 @@ class TextFieldWidget extends StatelessWidget {
           color: Get.theme.primaryColor,
           borderRadius: buildBorderRadius,
           boxShadow: [
-            BoxShadow(color: Get.theme.focusColor.withOpacity(0.1), blurRadius: 10, offset: Offset(0, 5)),
+            BoxShadow(
+                color: Get.theme.focusColor.withOpacity(0.1), blurRadius: 10, offset: Offset(0, 5)),
           ],
           border: Border.all(color: Get.theme.focusColor.withOpacity(0.05))),
       child: Column(
@@ -84,6 +86,7 @@ class TextFieldWidget extends StatelessWidget {
               suffix: suffix,
               errorText: errorText,
             ),
+            onEditingComplete: onEditingComplete,
           ),
         ],
       ),

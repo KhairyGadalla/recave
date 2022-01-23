@@ -45,7 +45,10 @@ class PhoneVerificationView extends GetView<AuthController> {
                       color: Get.theme.colorScheme.secondary,
                       borderRadius: BorderRadius.vertical(bottom: Radius.circular(10)),
                       boxShadow: [
-                        BoxShadow(color: Get.theme.focusColor.withOpacity(0.2), blurRadius: 10, offset: Offset(0, 5)),
+                        BoxShadow(
+                            color: Get.theme.focusColor.withOpacity(0.2),
+                            blurRadius: 10,
+                            offset: Offset(0, 5)),
                       ],
                     ),
                     margin: EdgeInsets.only(bottom: 50),
@@ -55,12 +58,14 @@ class PhoneVerificationView extends GetView<AuthController> {
                         children: [
                           Text(
                             _settings.appName,
-                            style: Get.textTheme.headline6.merge(TextStyle(color: Get.theme.primaryColor, fontSize: 24)),
+                            style: Get.textTheme.headline6
+                                .merge(TextStyle(color: Get.theme.primaryColor, fontSize: 24)),
                           ),
                           SizedBox(height: 5),
                           Text(
                             "Welcome to the best service provider system!".tr,
-                            style: Get.textTheme.caption.merge(TextStyle(color: Get.theme.primaryColor)),
+                            style: Get.textTheme.caption
+                                .merge(TextStyle(color: Get.theme.primaryColor)),
                             textAlign: TextAlign.center,
                           ),
                           // Text("Fill the following credentials to login your account", style: Get.textTheme.caption.merge(TextStyle(color: Get.theme.primaryColor))),
@@ -104,6 +109,7 @@ class PhoneVerificationView extends GetView<AuthController> {
                         textAlign: TextAlign.center,
                         keyboardType: TextInputType.number,
                         onChanged: (input) => controller.smsSent.value = input,
+                        onEditingComplete: () => controller.verifyPhone(),
                         // iconData: Icons.add_to_home_screen_outlined,
                       ),
                       BlockButtonWidget(
@@ -113,7 +119,8 @@ class PhoneVerificationView extends GetView<AuthController> {
                         color: Get.theme.colorScheme.secondary,
                         text: Text(
                           "Verify".tr,
-                          style: Get.textTheme.headline6.merge(TextStyle(color: Get.theme.primaryColor)),
+                          style: Get.textTheme.headline6
+                              .merge(TextStyle(color: Get.theme.primaryColor)),
                         ),
                       ).paddingSymmetric(vertical: 30, horizontal: 20),
                       Row(
