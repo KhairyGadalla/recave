@@ -56,8 +56,9 @@ class FirebaseProvider extends GetxService {
     final fba.PhoneVerificationFailed _verifyFailed = (fba.FirebaseAuthException e) {
       throw Exception(e.message);
     };
+    final String phoneNumber = "+2${Get.find<AuthService>().user.value.phoneNumber}";
     await _auth.verifyPhoneNumber(
-      phoneNumber: "+2${Get.find<AuthService>().user.value.phoneNumber}",
+      phoneNumber: phoneNumber,
       timeout: const Duration(seconds: 30),
       verificationCompleted: _verifiedSuccess,
       verificationFailed: _verifyFailed,
